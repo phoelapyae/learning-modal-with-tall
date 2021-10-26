@@ -12,15 +12,15 @@
                 </ul>
             </aside>
             <main class="text-sm col-span-9">
-                <div class="mb-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque mollitia odio temporibus at expedita deserunt labore natus inventore harum? Neque!
-                </div>
-                <div class="mb-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque mollitia odio temporibus at expedita deserunt labore natus inventore harum? Neque!
-                </div>
-                <div class="mb-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque mollitia odio temporibus at expedita deserunt labore natus inventore harum? Neque!
-                </div>
+                <p class="mb-6">
+                    Would you like to delete your account ?
+                </p>
+                <form id="delete-user-form" method="POST" action="/" x-data @submit.prevent="location.hash = '#user-delete-modal'">
+                    @csrf
+                    <p>
+                        <x-button class="bg-blue-400 hover:bg-blue-500">Yes, Delete</x-button>
+                    </p>
+                </form>
             </main>
         </div>
         <footer class="bg-blue-600 p-4">
@@ -29,7 +29,7 @@
     </div>
 
     <!-- Modal  -->
-    <x-confirmation-modal>
+    <x-confirmation-modal name="user-delete-modal">
         <x-slot name="title">
             <h3>Are you sure?</h3>
         </x-slot>
@@ -39,8 +39,8 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-button class="bg-gray-400 hover:bg-gray-500">Cancel</x-button>
-            <x-button class="bg-blue-400 hover:bg-blue-500">Continue</x-button>
+            <a href="#" class='bg-gray-400 hover:bg-gray-500 text-sm uppercase py-2 px-4 rounded-md text-white transition-all duration-200 mr-2'>Cancel</a>
+            <x-button class="bg-blue-400 hover:bg-blue-500" @click="document.querySelector('#delete-user-form').submit()">Continue</x-button>
         </x-slot>
     </x-confirmation-modal>
 </x-layout>
